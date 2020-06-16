@@ -1,0 +1,17 @@
+{
+  "name": "mychromeextension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build index2.js --out-dir ./ --out-file index.js"
+  },
+  "author": "PengfeiYuan",
+  "license": "ISC",
+  "dependencies": {
+    "unsplash-js": "^6.0.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
