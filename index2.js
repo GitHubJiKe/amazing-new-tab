@@ -3,7 +3,8 @@ import Unsplash from "unsplash-js";
   const unsplash = new Unsplash({
     accessKey: "N0cuPOPXoVQUn46r1BmMykysuq8Dplc8EbYP5ChSp0U",
   });
-
+  const titleDom = document.querySelector(".title");
+  const defaultTitle = localStorage.getItem("TITLE");
   function setDefaultConfig() {
     const prevUrl = localStorage.getItem("URL");
     const color = localStorage.getItem("COLOR");
@@ -14,6 +15,10 @@ import Unsplash from "unsplash-js";
 
     if (color) {
       document.querySelector(".content").style.color = color;
+    }
+
+    if (defaultTitle) {
+      document.querySelector(".title").innerHTML = defaultTitle;
     }
   }
 
@@ -42,16 +47,25 @@ import Unsplash from "unsplash-js";
   }
 
   function setTitle() {
-    const date = new Date();
-    if (date.getHours() <= 12) {
-      //上午
-      document.querySelector(".title").innerHTML = "上午好，朋友！";
-    } else if (date.getHours() > 14) {
-      // 下午
-      document.querySelector(".title").innerHTML = "下午好，朋友！";
-    } else {
-      document.querySelector(".title").innerHTML = "中午好，朋友！";
+    if (defaultTitle) {
+      return;
     }
+
+    const date = new Date();
+    const hours = date.getHours();
+    let title = "早上好，朋友！";
+
+    if (hours >= 10 && hours <= 12) {
+      //上午
+      title = "上午好，朋友！";
+    } else if (hours >= 14 && hours < 19) {
+      // 下午
+      title = "下午好，朋友！";
+    } else if (hours >= 19) {
+      // 晚上
+      title = "晚上好，朋友！";
+    }
+    document.querySelector(".title").innerHTML = title;
   }
 
   document.getElementById("changePic").addEventListener("click", function () {
@@ -72,6 +86,14 @@ import Unsplash from "unsplash-js";
       localStorage.setItem("COLOR", color);
       document.querySelector(".content").style.color = color;
     });
+
+  titleDom.addEventListener("click", function () {
+    titleDom.setAttribute("contenteditable", "true");
+  });
+  titleDom.addEventListener("blur", function () {
+    localStorage.setItem("TITLE", titleDom.innerHTML);
+    titleDom.setAttribute("contenteditable", "false");
+  });
 
   setDefaultConfig();
   setTitle();
