@@ -11,7 +11,7 @@ body,
 #wraper {
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% auto;
   background-image: url(https://images.unsplash.com/photo-1592135015980-cadde7968b22);
 }
 .content {
