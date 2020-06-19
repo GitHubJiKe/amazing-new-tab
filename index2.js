@@ -53,17 +53,21 @@ import Unsplash from "unsplash-js";
 
     const date = new Date();
     const hours = date.getHours();
-    let title = "早上好，朋友！";
+    let title = "早上好，奥利给！";
 
     if (hours >= 10 && hours <= 12) {
       //上午
-      title = "上午好，朋友！";
-    } else if (hours >= 14 && hours < 19) {
+      title = "中午快到了，吃顿好的！";
+    } else if (hours >= 12 && hours < 14) {
       // 下午
-      title = "下午好，朋友！";
-    } else if (hours >= 19) {
+      title = "困了吧，小憩一会儿？";
+    } else if (hours >= 14 && hours < 19) {
+      title = "继续奋斗！";
+    } else if (hours >= 19 && hours <= 20) {
       // 晚上
-      title = "晚上好，朋友！";
+      title = "不出意外，快下班了！";
+    } else if (hours > 22) {
+      title = "该睡了，早点休息哦";
     }
     document.querySelector(".title").innerHTML = title;
   }
